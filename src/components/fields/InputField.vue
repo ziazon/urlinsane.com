@@ -1,12 +1,10 @@
 <template lang="pug">
-  .columns
-    .column.is-half
-      .field
-        label.label {{ name }}
-          p.help {{ description }}
-          span.help.is-danger(v-if="required") Required
-        .control
-          input.input(type="text" placeholder="domain")
+  .section.field
+    label.label {{ name }}
+      p.help {{ description }}
+      span.help.is-danger(v-if="required") Required
+    .control
+      input.input(type="text" placeholder="domain")
 </template>
 
 <script lang="ts">
