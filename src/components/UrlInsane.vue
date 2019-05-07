@@ -1,8 +1,9 @@
 <template lang="pug">
-  div
+  .tile.is-ancestor
     transition(name="fade" mode="out-in")
-      div(v-if="!$store.state.urlInsane.loading")
-        FieldBuilder(v-for="(option, key) in $store.state.urlInsane.options" :name="key" :option="option")
+      .tile.is-parent(v-if="!$store.state.urlInsane.loading")
+        FieldBuilder.tile.is-child(v-for="(option, key) in $store.state.urlInsane.options" :name="key" :option="option")
+      .tile.is-vertical.is-16(v-else) Loading
 </template>
 
 <script lang="ts">

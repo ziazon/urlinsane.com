@@ -1,5 +1,5 @@
 <template lang="pug">
-  .field
+  .section.field
     label.label {{ name }}
       span.help.is-danger(v-if="required") Required
       p.help {{ description }}
