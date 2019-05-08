@@ -7,13 +7,13 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit --include=tests/unit/common.ts",
-    "test-watch:unit": "vue-cli-service test:unit --include=tests/unit/setup.ts --watch"
+    "test-watch:unit": "vue-cli-service test:unit --watch",
+    "test:e2e": "vue-cli-service test:e2e --headless --reporter junit --reporter-options 'mochaFile=tests/e2e/reports/test-output.xml'",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "core-js": "^2.6.5",
+    "core-js": "^3.0.1",
     "lodash": "^4.17.11",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
@@ -42,8 +42,6 @@
     "chai": "^4.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "jsdom": "^15.0.0",
-    "jsdom-global": "^3.0.2",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.3",
