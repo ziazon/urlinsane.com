@@ -13,13 +13,16 @@ import {
 @Module({ namespaced: true })
 export default class UrlInsaneModule extends VuexModule implements UrlInsaneState {
   public options = {};
+
   public result = {};
+
   public form = {
     domains: [],
     funcs: [],
     keyboards: [],
     typos: [],
   };
+
   public loading = true;
 
   get rows() {

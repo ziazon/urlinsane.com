@@ -14,11 +14,13 @@ import { TypoOption } from '@/services/url-insane/types';
 @Component
 export default class InputField extends Vue {
   @Prop() private name!: string;
+
   @Prop() private option!: TypoOption;
 
   get required() {
     return !this.option.optional;
   }
+
   get description() {
     return this.option.description;
   }

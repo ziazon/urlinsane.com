@@ -10,18 +10,19 @@ import MultiSelectField from './MultiSelectField.vue';
 
 const components = {
   'input-field': InputField,
-  'multi-select-field': MultiSelectField
+  'multi-select-field': MultiSelectField,
 };
 
 @Component({
-  components
+  components,
 })
 export default class FieldBuilder extends Vue {
   @Prop() private name!: string;
+
   @Prop() private option!: TypoOption;
 
   get component() {
-    return `${this.option.type}-field`
+    return `${this.option.type}-field`;
   }
 }
 </script>
