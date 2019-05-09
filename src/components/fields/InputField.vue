@@ -1,7 +1,11 @@
 <template lang="pug">
   .column.is-2.is-paddingless
     form.form-block
-      input.form-input.home-input(type="text" placeholder="domain")
+      input.form-input.home-input(
+        type="text"
+        placeholder="domain"
+        @input="onInput($event.target.value)"
+      )
     p.help
       span {{ description }}
         .is-inline.help.is-danger(v-if="required") * Required
@@ -23,6 +27,10 @@ export default class InputField extends Vue {
 
   get description() {
     return this.option.description;
+  }
+
+  private onInput(value: string) {
+    this.$emit('input', value);
   }
 }
 </script>
