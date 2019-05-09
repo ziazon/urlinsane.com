@@ -16,7 +16,7 @@
         .navbar-start
           router-link.navbar-item(to="/") Home
           router-link.navbar-item(to="/url-insane") Url Insane
-    section.section
+    section.section.is-fullheight
       .container.is-fluid
         router-view
     footer.footer
@@ -43,4 +43,8 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import "@/scss/styles.scss";
+
+.is-fullheight {
+  min-height: calc(100vh - #{$navbar-height});
+}
 </style>
