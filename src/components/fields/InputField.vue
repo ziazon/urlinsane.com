@@ -1,10 +1,10 @@
 <template lang="pug">
-  .section.field
-    label.label {{ name }}
-      p.help {{ description }}
-      span.help.is-danger(v-if="required") Required
-    .control
-      input.input(type="text" placeholder="domain")
+  .column.is-2.is-paddingless
+    form.form-block
+      input.form-input.home-input(type="text" placeholder="domain")
+    p.help
+      span {{ description }}
+        .is-inline.help.is-danger(v-if="required") * Required
 </template>
 
 <script lang="ts">

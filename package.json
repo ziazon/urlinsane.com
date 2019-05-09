@@ -24,6 +24,7 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.2",
     "@types/chai": "^4.1.0",
     "@types/lodash": "^4.14.123",
     "@types/mocha": "^5.2.4",
@@ -38,8 +39,8 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
     "bulma": "^0.7.4",
-    "bulma-switch": "^2.0.0",
     "chai": "^4.1.2",
+    "cool-checkboxes-for-bulma.io": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.18.0",

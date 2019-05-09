@@ -6,7 +6,6 @@ import store from './store';
 
 sync(store, router);
 
-
 Vue.config.productionTip = false;
 
 new Vue({

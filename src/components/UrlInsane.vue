@@ -1,20 +1,17 @@
 <template lang="pug">
-  .tile.is-ancestor
     transition(name="fade" mode="out-in")
-      .tile.is-parent(v-if="!$store.state.urlInsane.loading")
-        FieldBuilder.tile.is-child(
-          v-for="(option, key) in $store.state.urlInsane.options"
-          :name="key"
-          :option="option"
+      div(v-if="!$store.state.urlInsane.loading")
+        FormBuilder(
+          :options="$store.state.urlInsane.options"
         )
-      .tile.is-vertical.is-16(v-else) Loading
+      div(v-else) Loading
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import FieldBuilder from './fields/FieldBuilder.vue';
+import FormBuilder from './fields/FormBuilder.vue';
 
-const components = { FieldBuilder };
+const components = { FormBuilder };
 @Component({
   components,
 })

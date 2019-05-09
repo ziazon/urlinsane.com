@@ -7,6 +7,11 @@
 background-color: $grey-darker;
 }
 
+.footer {
+  margin: $footer-margin;
+  line-height: $footer-line-height;
+}
+
 hr {
 height: $border-width;
 }
