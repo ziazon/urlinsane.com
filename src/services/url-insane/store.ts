@@ -43,9 +43,9 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
   }
 
   @Action({ commit: 'STORE_OPTIONS' })
-  public async fetchResult() {
+  public async fetchResult(payload: TypoRequestBody) {
     this.context.commit('START_LOADING');
-    const result = await UrlInsaneApi.fetchResult(this.form);
+    const result = await UrlInsaneApi.fetchResult(payload);
     this.context.commit('STOP_LOADING');
 
     return result;

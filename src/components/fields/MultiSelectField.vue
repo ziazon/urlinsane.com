@@ -14,6 +14,8 @@
                     type="checkbox"
                     :name="checkbox.name"
                     :value="checkbox.value"
+                    @change="onChange(selections)"
+                    v-model="selections"
                   )
                   label(:for="checkbox.name") {{ checkbox.description }}
     p.help
@@ -31,6 +33,8 @@ export default class MultiSelectField extends Vue {
 
   @Prop() private option!: TypoOption;
 
+  private selections: string[] = [];
+
   private expanded: boolean = false;
 
   private toggle() {
@@ -43,6 +47,10 @@ export default class MultiSelectField extends Vue {
 
   get description() {
     return this.option.description;
+  }
+
+  private onChange(value: string) {
+    this.$emit('input', value);
   }
 }
 </script>

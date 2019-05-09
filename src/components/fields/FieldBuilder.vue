@@ -1,5 +1,10 @@
 <template lang="pug">
-  component(:is="component" :name="name" :option="option")
+  component(
+    :is="component"
+    :name="name"
+    :option="option"
+    @input="onInput($event, name)"
+  )
 </template>
 
 <script lang="ts">
@@ -20,6 +25,10 @@ export default class FieldBuilder extends Vue {
   @Prop() private name!: string;
 
   @Prop() private option!: TypoOption;
+
+  private onInput(value: any, name: string) {
+    this.$emit('input', { [name]: value });
+  }
 
   get component() {
     return `${this.option.type}-field`;
