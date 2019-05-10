@@ -11,7 +11,7 @@
   height: 40px;
   margin-top: -10px;
   border-right: 2px solid rgba(10,10,10,.1);
-  background: #fff;
+  background: #073642;
   transition: all 0.3s ease;
   &.focus {
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
@@ -97,6 +97,7 @@
   font-size: 1em;
   background: none;
   color: #5a6674;
+  background-color: #073642;
   width: 90%;
   height: 20px;
   border: none;

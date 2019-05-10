@@ -16,6 +16,8 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
 
   public result = {};
 
+  public error = '';
+
   public form = {
     domains: [],
     funcs: [],
@@ -35,18 +37,36 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
 
   @Action({ commit: 'STORE_OPTIONS' })
   public async fetchOptions() {
+    let options = {};
+
     this.context.commit('START_LOADING');
-    const options = await UrlInsaneApi.fetchOptions();
+
+    try {
+      options = await UrlInsaneApi.fetchOptions();
+    } catch (error) {
+      this.context.commit('SET_ERROR', error.message);
+    }
+
     this.context.commit('STOP_LOADING');
+    this.context.commit('RESET_ERROR');
 
     return options;
   }
 
-  @Action({ commit: 'STORE_OPTIONS' })
+  @Action({ commit: 'STORE_RESULT' })
   public async fetchResult(payload: TypoRequestBody) {
+    let result = {};
+
     this.context.commit('START_LOADING');
-    const result = await UrlInsaneApi.fetchResult(payload);
+
+    try {
+      result = await UrlInsaneApi.fetchResult(payload);
+    } catch (error) {
+      this.context.commit('SET_ERROR', error.message);
+    }
+
     this.context.commit('STOP_LOADING');
+    this.context.commit('RESET_ERROR');
 
     return result;
   }
@@ -57,6 +77,14 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
 
   @Mutation private STOP_LOADING() {
     this.loading = false;
+  }
+
+  @Mutation private SET_ERROR(error: string) {
+    this.error = error;
+  }
+
+  @Mutation private RESET_ERROR() {
+    this.error = '';
   }
 
   @Mutation private STORE_OPTIONS(options: TypoOptionsResponseBody) {
