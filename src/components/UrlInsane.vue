@@ -1,12 +1,23 @@
 <template lang="pug">
     transition(name="fade" mode="out-in")
       div(v-if="!$store.state.urlInsane.loading")
-        FormBuilder(
-          :options="options"
-          @submit="onSubmit"
-        )
-        | {{ headers }}
-        | {{ rows }}
+        section.section
+          FormBuilder(
+            :options="options"
+            @submit="onSubmit"
+          )
+        .is-fullwidth
+          .control(v-if="error")
+            .tags.has-addons
+              span.tag.is-danger Error
+              span.tag {{ error }}
+          table.table(v-if="headers")
+            thead
+              tr
+                th(v-for="header in headers") {{ header }}
+            tbody
+              tr(v-if="rows" v-for="row in rows")
+                td(v-for="header in headers") {{ row[header] }}
       div(v-else) Loading
 </template>
 
@@ -41,12 +52,16 @@ export default class UrlInsane extends Vue {
     return this.$store.state.urlInsane.options;
   }
 
+  get error() {
+    return this.$store.state.urlInsane.error;
+  }
+
   get headers() {
-    return this.$store.state.urlInsane.headers;
+    return this.$store.getters['urlInsane/headers'];
   }
 
   get rows() {
-    return this.$store.state.urlInsane.rows;
+    return this.$store.getters['urlInsane/rows'];
   }
 }
 </script>

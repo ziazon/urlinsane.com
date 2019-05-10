@@ -8,8 +8,7 @@ background-color: $grey-darker;
 }
 
 .footer {
-  margin: $footer-margin;
-  line-height: $footer-line-height;
+  max-height: $footer-height;
 }
 
 hr {
