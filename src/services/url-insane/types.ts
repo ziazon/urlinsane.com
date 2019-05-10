@@ -3,6 +3,7 @@ export interface UrlInsaneState {
   result: TypoResponseBody | {};
   form: TypoRequestBody | {};
   loading: boolean;
+  error: string;
 }
 
 export interface TypoListItem {
