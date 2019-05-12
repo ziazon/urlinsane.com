@@ -3,6 +3,7 @@
     :is="component"
     :name="name"
     :option="option"
+    :value="value"
     @input="onInput($event, name)"
   )
 </template>
@@ -23,6 +24,8 @@ const components = {
 })
 export default class FieldBuilder extends Vue {
   @Prop() private name!: string;
+
+  @Prop() private value!: any;
 
   @Prop() private option!: TypoOption;
 

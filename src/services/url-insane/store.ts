@@ -8,6 +8,7 @@ import {
   TypoOptionsResponseBody,
   TypoResponseBody,
   TypoRequestBody,
+  UrlInsaneForm,
 } from '@/services/url-insane/types';
 
 @Module({ namespaced: true })
@@ -18,8 +19,8 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
 
   public error = '';
 
-  public form = {
-    domains: [],
+  public form: UrlInsaneForm = {
+    domain: '',
     funcs: [],
     keyboards: [],
     typos: [],
@@ -93,5 +94,11 @@ export default class UrlInsaneModule extends VuexModule implements UrlInsaneStat
 
   @Mutation private STORE_RESULT(result: TypoResponseBody) {
     this.result = result;
+  }
+
+  @Mutation private UPDATE_FORM(payload: UrlInsaneForm) {
+    this.form = {
+      ...this.form, ...payload,
+    };
   }
 }
