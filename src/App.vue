@@ -2,7 +2,7 @@
   #app
     nav.navbar(role="navigation" aria-label="main navigation")
       .navbar-brand
-        router-link.navbar-item(to="/") cybersectools.io
+        router-link.navbar-item(to="/") cybersectech.io
         a.navbar-burger.burger(
           role="button"
           aria-label="menu"
@@ -21,7 +21,7 @@
     footer.footer
       .content.has-text-centered
         p
-          strong cybersectools.io
+          strong cybersectech.io
           | &nbsp;by&nbsp;
           a(href="https://github.com/orgs/secint/people") SecInt
           | . The source code is licensed&nbsp;
