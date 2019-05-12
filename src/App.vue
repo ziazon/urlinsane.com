@@ -15,7 +15,7 @@
       #navbarSiteNav.navbar-menu(:class="{'is-active': menuIsOpen}")
         .navbar-start
           router-link.navbar-item(to="/") Home
-          router-link.navbar-item(to="/url-insane") Url Insane
+          router-link.navbar-item(to="/urlinsane") Url Insane
     section.section.is-fullheight.is-paddingless
       router-view
     footer.footer

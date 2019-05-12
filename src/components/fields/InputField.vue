@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TypoOption } from '@/services/url-insane/types';
+import { TypoOption } from '@/services/urlinsane/types';
 
 @Component
 export default class InputField extends Vue {

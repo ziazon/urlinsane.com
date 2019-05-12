@@ -1,6 +1,6 @@
 # URL Insane Api Requirements
 
-OPTIONS /api/url-insane/typo
+OPTIONS /api/urlinsane/typo
 Response:
 
 ```json
@@ -41,7 +41,7 @@ Response:
 }
 ```
 
-POST /api/url-insane/typo
+POST /api/urlinsane/typo
 body:
 
 ```json
