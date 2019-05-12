@@ -1,7 +1,7 @@
-# cybersectools.io
+# cybersectech.io
 
-[![pipeline status](https://gitlab.com/secint/cybersectools-io/badges/master/pipeline.svg)](https://gitlab.com/secint/cybersectools-io/commits/master)
-[![coverage report](https://gitlab.com/secint/cybersectools-io/badges/master/coverage.svg)](https://gitlab.com/secint/cybersectools-io/commits/master)
+[![pipeline status](https://gitlab.com/secint/cybersectech-io/badges/master/pipeline.svg)](https://gitlab.com/secint/cybersectech-io/commits/master)
+[![coverage report](https://gitlab.com/secint/cybersectech-io/badges/master/coverage.svg)](https://gitlab.com/secint/cybersectech-io/commits/master)
 
 ## Project setup
 ```
