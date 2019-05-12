@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TypoOption } from '@/services/url-insane/types';
+import { TypoOption } from '@/services/urlinsane/types';
 import InputField from './InputField.vue';
 import MultiSelectField from './MultiSelectField.vue';
 

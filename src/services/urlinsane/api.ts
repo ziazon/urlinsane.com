@@ -1,6 +1,6 @@
 import axios, { AxiosPromise } from 'axios';
 import { URL_INSANE_API_URL } from '@/services/config';
-import { TypoOptionsResponseBody, TypoRequestBody } from '@/services/url-insane/types';
+import { TypoOptionsResponseBody, TypoRequestBody } from '@/services/urlinsane/types';
 
 export default {
   fetchOptions: async () => {
@@ -9,7 +9,7 @@ export default {
     return data;
   },
   fetchResult: async (payload: TypoRequestBody) => {
-    const { data } = await axios.post(URL_INSANE_API_URL, payload);
+    const { data } = await axios.post(`${URL_INSANE_API_URL}/`, payload);
 
     return data;
   },

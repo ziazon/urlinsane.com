@@ -13,8 +13,8 @@ export default new Router({
       component: () => import(/* webpackChunkName: "home" */ './components/Home.vue'),
     },
     {
-      path: '/url-insane',
-      name: 'url-insane',
+      path: '/urlinsane',
+      name: 'urlinsane',
       component: () => import(/* webpackChunkName: "about" */ './components/UrlInsane.vue'),
     },
   ],

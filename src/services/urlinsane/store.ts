@@ -1,4 +1,4 @@
-import UrlInsaneApi from '@/services/url-insane/api';
+import UrlInsaneApi from '@/services/urlinsane/api';
 import { get } from 'lodash';
 import {
   Module, VuexModule, Mutation, Action,
@@ -9,7 +9,7 @@ import {
   TypoResponseBody,
   TypoRequestBody,
   UrlInsaneForm,
-} from '@/services/url-insane/types';
+} from '@/services/urlinsane/types';
 
 @Module({ namespaced: true })
 export default class UrlInsaneModule extends VuexModule implements UrlInsaneState {

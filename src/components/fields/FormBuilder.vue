@@ -16,7 +16,7 @@
 <script lang="ts">
 import { assign } from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TypoOption } from '@/services/url-insane/types';
+import { TypoOption } from '@/services/urlinsane/types';
 import FieldBuilder from './FieldBuilder.vue';
 
 const components = {
