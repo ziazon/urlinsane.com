@@ -56,6 +56,7 @@ export default class MultiSelectField extends Vue {
   private isChecked(value: string) {
     return includes(this.value, value);
   }
+
   private onChange(value: string) {
     this.$emit('input', value);
   }
