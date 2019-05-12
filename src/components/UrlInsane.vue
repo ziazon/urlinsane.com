@@ -5,13 +5,14 @@
           FormBuilder(
             :options="options"
             @submit="onSubmit"
+            :form="form"
           )
-        .is-fullwidth
+        .is-fullwidth.side-scrollable
           .control(v-if="error")
             .tags.has-addons
               span.tag.is-danger Error
               span.tag {{ error }}
-          table.table(v-if="headers")
+          table(v-if="headers")
             thead
               tr
                 th(v-for="header in headers") {{ header }}
@@ -46,6 +47,10 @@ export default class UrlInsane extends Vue {
       typos,
     };
     this.$store.dispatch('urlInsane/fetchResult', payload);
+  }
+
+  get form() {
+    return this.$store.state.urlInsane.form;
   }
 
   get options() {

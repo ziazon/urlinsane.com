@@ -4,6 +4,7 @@
     FieldBuilder(
       v-for="(option, key) in options"
       :name="key"
+      :value="form[key]"
       :option="option"
       :key="key"
       @input="onInput"
@@ -28,7 +29,7 @@ const components = {
 export default class FormBuilder extends Vue {
   @Prop() private options!: Record<string, TypoOption>;
 
-  private form = {};
+  @Prop() private form!: Record<string, TypoOption>;
 
   private onInput(value: Record<string, any>) {
     assign(this.form, value);

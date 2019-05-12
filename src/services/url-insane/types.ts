@@ -1,9 +1,16 @@
 export interface UrlInsaneState {
   options: TypoRequestBody | {};
   result: TypoResponseBody | {};
-  form: TypoRequestBody | {};
+  form: UrlInsaneForm;
   loading: boolean;
   error: string;
+}
+
+export interface UrlInsaneForm {
+  domain: string;
+  funcs: string[];
+  keyboards: string[];
+  typos: string[];
 }
 
 export interface TypoListItem {

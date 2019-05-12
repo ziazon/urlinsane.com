@@ -1,9 +1,10 @@
 <template lang="pug">
   .column.is-2.is-paddingless
-    form.form-block
+    form.form-block(@submit.prevent)
       input.form-input.home-input(
         type="text"
         placeholder="domain"
+        :value="value"
         @input="onInput($event.target.value)"
       )
     p.help
@@ -18,6 +19,8 @@ import { TypoOption } from '@/services/url-insane/types';
 @Component
 export default class InputField extends Vue {
   @Prop() private name!: string;
+
+  @Prop() private value!: string;
 
   @Prop() private option!: TypoOption;
 
