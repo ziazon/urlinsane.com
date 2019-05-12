@@ -1,4 +1,4 @@
-import urlInsane from './url-insane/store';
+import urlInsane from './urlinsane/store';
 
 export default {
   urlInsane,

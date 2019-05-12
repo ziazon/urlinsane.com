@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import FormBuilder from './fields/FormBuilder.vue';
-import { TypoOptionsResponseBody, TypoRequestBody } from '@/services/url-insane/types';
+import { TypoOptionsResponseBody, TypoRequestBody } from '@/services/urlinsane/types';
 
 const components = { FormBuilder };
 @Component({
