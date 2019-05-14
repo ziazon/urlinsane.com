@@ -16,11 +16,5 @@ COPY --from=server-build /go/src/github.com/rangertaha/urlinsane/builds/urlinsan
 COPY --from=ui-build /app/dist /usr/share/nginx/html
 COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./docker/run.sh ./run.sh
-EXPOSE 80
+EXPOSE 8080
 CMD ["./run.sh"]
-
-FROM ui-build as test
-
-ENV NODE_ENV=dev
-
-RUN npm ci
