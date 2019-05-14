@@ -1,23 +1,6 @@
 image: node:lts
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - .npm
-    - cache/Cypress
-    - node_modules
-
 before_script:
-  - >
-    apt-get update -yqq
-    && apt-get install -yqq
-    libgtk2.0-0
-    libnotify-dev
-    libgconf-2-4
-    libnss3
-    libxss1
-    libasound2
-    xvfb
   - npm ci
 
 stages:
@@ -38,17 +21,6 @@ unit test:
   stage: test
   script:
     - npm run test:unit
-
-e2e test:
-  stage: test
-  script:
-    - npm run test:e2e
-  artifacts:
-    expire_in: 1 week
-    when: always
-    paths:
-    - tests/e2e/screenshots
-    - tests/e2e/videos
 
 lint:
   stage: lint

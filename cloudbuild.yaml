@@ -1,8 +1,21 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--target', 'server-build', '--cache-from', 'gcr.io/$PROJECT_ID/$SERVICE_ID:server-build', '-t', 'gcr.io/$PROJECT_ID/$SERVICE_ID:server-build', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--target', 'ui-build', '--cache-from', 'gcr.io/$PROJECT_ID/$SERVICE_ID:ui-build', '-t', 'gcr.io/$PROJECT_ID/$SERVICE_ID:ui-build', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--target', 'serve', '--cache-from', 'gcr.io/$PROJECT_ID/$SERVICE_ID', '-t', 'gcr.io/$PROJECT_ID/$SERVICE_ID', '.']
-images: ['gcr.io/$PROJECT_ID/$SERVICE_ID', 'gcr.io/$PROJECT_ID/$SERVICE_ID:ui-build', 'gcr.io/$PROJECT_ID/$SERVICE_ID:server-build']
+- name: 'gcr.io/cloud-builders/npm'
+  id: Install
+  args:
+  - 'ci'
+  waitFor:
+  - '-'
+- name: 'gcr.io/cloud-builders/npm'
+  id: Lint
+  args:
+  - 'run'
+  - 'lint'
+  waitFor:
+  - 'Install'
+- name: 'gcr.io/cloud-builders/npm'
+  id: Unit Tests
+  args:
+  - 'run'
+  - 'test:unit'
+  waitFor:
+  - 'Install'
