@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
+    "serve": "vue-cli-service serve",
     "test-watch:unit": "vue-cli-service test:unit --watch",
-    "test:e2e": "vue-cli-service test:e2e --headless --reporter junit --reporter-options 'mochaFile=tests/e2e/reports/test-output.xml'",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -29,7 +28,6 @@
     "@types/lodash": "^4.14.123",
     "@types/mocha": "^5.2.4",
     "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-typescript": "^3.7.0",
     "@vue/cli-plugin-unit-mocha": "^3.7.0",
