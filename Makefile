@@ -2,7 +2,6 @@
 .DEFAULT_GOAL := help
 
 SERVICE_IMAGE_NAME=cybersectech-io
-TEST_IMAGE_NAME=cybersectech-io-test
 PROJECT_ID=cyberse
 SERVICE_REGION=us-central1
 SERVICE_ID=cybersectech-ui
@@ -18,29 +17,14 @@ login-gcr: ## docker login to repository account
 build: ## builds service docker container
 	$(BUILD_CMD) --target serve -t $(SERVICE_IMAGE_NAME) .
 
-build-test: ## builds docker container used for tests
-	$(BUILD_CMD) --target ui-test-build -t $(TEST_IMAGE_NAME) .
-
 publish: ## builds docker container in gcr
 	gcloud builds submit --tag $(REPOSITORY_URI)/$(PROJECT_ID)/$(SERVICE_IMAGE_NAME)
 
-publish-test: ## builds docker container used for tests in gcr
-	gcloud builds submit --tag $(REPOSITORY_URI)/$(PROJECT_ID)/$(TEST_IMAGE_NAME)
-
-pull-build:
+pull-build: ## pulls docker container from gcr
 	docker pull $(REPOSITORY_URI)/$(PROJECT_ID)/$(SERVICE_IMAGE_NAME)
-
-pull-build-test:
-	docker pull $(REPOSITORY_URI)/$(PROJECT_ID)/$(TEST_IMAGE_NAME)
 
 deploy: publish ## deploys the service
 	gcloud beta run deploy --region=$(SERVICE_REGION) $(SERVICE_ID) --image $(REPOSITORY_URI)/$(PROJECT_ID)/$(SERVICE_IMAGE_NAME)
 
 run-build: build ## runs docker container locally reachable at http:://localhost:8080
 	docker run --name $(SERVICE_IMAGE_NAME) --rm -p 8080:80 --env .env $(SERVICE_IMAGE_NAME)
-
-lint: ## runs linter from docker context
-	docker run $(TEST_IMAGE_NAME) npm run lint
-
-test-unit: ## runs unit tests from docker context
-	docker run $(TEST_IMAGE_NAME) npm run test:unit
