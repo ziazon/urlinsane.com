@@ -15,8 +15,11 @@ steps:
   - 'run'
   - 'deploy'
   - '--region=us-central1'
-  - 'cybersectech-u'
+  - 'cybersectech-ui'
   - '--image'
   - 'gcr.io/$PROJECT_ID/cybersectech-ui'
+  - '--allow-unauthenticated'
+  - '--memory=512Mi'
+  - '--concurrency=2'
   waitFor:
   - 'Push'
