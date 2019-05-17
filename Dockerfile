@@ -21,8 +21,3 @@ COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./docker/run.sh ./run.sh
 EXPOSE 8080
 CMD ["./run.sh"]
-
-# ui tests build
-FROM ui-base as ui-test-build
-ENV NODE_ENV=test
-RUN npm ci
