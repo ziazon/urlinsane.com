@@ -1,12 +1,11 @@
 module.exports = {
   devServer: {
     proxy: {
-      '/api/urlinsane': {
-        ws: true,
+      '/api/typo': {
         changeOrigin: true,
-        target: 'http://127.0.0.1:8888',
+        target: 'http://localhost:8888',
         pathRewrite: {
-          '^/api/urlinsane': '',
+          '^/api/typo': '',
         },
       },
     },

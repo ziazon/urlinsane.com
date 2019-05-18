@@ -1,7 +1,7 @@
 .PHONY: help build build-test run-build publish release lint test-unit test-e2e
 .DEFAULT_GOAL := help
 
-SERVICE_IMAGE_NAME=cybersectech-io
+SERVICE_IMAGE_NAME=urlinsane-ui
 PROJECT_ID=cyberse
 SERVICE_REGION=us-central1
 SERVICE_ID=cybersectech-ui
@@ -27,4 +27,4 @@ deploy: publish ## deploys the service
 	gcloud beta run deploy --region=$(SERVICE_REGION) $(SERVICE_ID) --image $(REPOSITORY_URI)/$(PROJECT_ID)/$(SERVICE_IMAGE_NAME)
 
 run-build: build ## runs docker container locally reachable at http:://localhost:8080
-	docker run --name $(SERVICE_IMAGE_NAME) --rm -p 8080:80 --env .env $(SERVICE_IMAGE_NAME)
+	docker run --name $(SERVICE_IMAGE_NAME) --rm -p 8080:8080 --env .env $(SERVICE_IMAGE_NAME)

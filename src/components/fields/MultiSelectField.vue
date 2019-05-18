@@ -27,9 +27,12 @@
 <script lang="ts">
 import { includes } from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TypoOption } from '@/services/urlinsane/types';
+import { TypoOption } from '@/services/typo/types';
+import Multiselect from 'vue-multiselect';
 
-@Component
+const components = { Multiselect };
+
+@Component({ components })
 export default class MultiSelectField extends Vue {
   @Prop() private name!: string;
 

@@ -13,9 +13,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "home" */ './components/Home.vue'),
     },
     {
-      path: '/urlinsane',
-      name: 'urlinsane',
-      component: () => import(/* webpackChunkName: "about" */ './components/UrlInsane.vue'),
+      path: '/typo',
+      name: 'typo',
+      component: () => import(/* webpackChunkName: "about" */ './services/typo/Typo.vue'),
     },
   ],
 });

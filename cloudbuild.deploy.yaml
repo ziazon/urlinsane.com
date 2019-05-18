@@ -5,7 +5,7 @@ steps:
   - 'builds'
   - 'submit'
   - '--tag'
-  - 'gcr.io/$PROJECT_ID/cybersectech-ui'
+  - 'gcr.io/$PROJECT_ID/urlinsane-ui'
   waitFor:
   - '-'
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -15,11 +15,11 @@ steps:
   - 'run'
   - 'deploy'
   - '--region=us-central1'
-  - 'cybersectech-ui'
+  - 'urlinsane-ui'
   - '--image'
-  - 'gcr.io/$PROJECT_ID/cybersectech-ui'
+  - 'gcr.io/$PROJECT_ID/urlinsane-ui'
   - '--allow-unauthenticated'
-  - '--memory=512Mi'
+  - '--memory=256Mi'
   - '--concurrency=2'
   waitFor:
   - 'Push'

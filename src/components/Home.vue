@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    h1 Welcome to Cyber Sec Tools
+    h1 Welcome to Url Insane!
 </template>
 
 <script lang="ts">
