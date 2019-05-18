@@ -3,14 +3,6 @@
   @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
 }
 
-.section {
-background-color: $grey-darker;
-}
-
-.footer {
-  max-height: $footer-height;
-}
-
 hr {
 height: $border-width;
 }
@@ -28,24 +20,16 @@ a {
 transition: all 200ms ease;
 }
 
-.content blockquote {
-border-color: $grey;
-}
-
 .button {
 transition: all 200ms ease;
 border-width: $border-width;
+color: $white;
 
 &.is-active,
 &.is-focused,
 &:active,
 &:focus {
   box-shadow: 0 0 0 2px rgba($button-focus-border-color, 0.5);
-}
-
-&.is-loading:after {
-  border-color: transparent transparent $button-border-color
-    $button-border-color;
 }
 @each $name, $pair in $colors {
   $color: nth($pair, 1);
@@ -73,6 +57,8 @@ color: $grey-lighter;
 }
 
 .button,
+.control.has-icons-left .icon,
+.control.has-icons-right .icon,
 .input,
 .pagination-ellipsis,
 .pagination-link,
@@ -80,9 +66,7 @@ color: $grey-lighter;
 .pagination-previous,
 .select,
 .select select,
-.textarea,
-.control.has-icons-left .icon,
-.control.has-icons-right .icon {
+.textarea {
 height: 2.5em;
 }
 
@@ -112,19 +96,15 @@ select {
 }
 }
 
-.progress {
-&::-webkit-progress-value {
-  background-color: $grey;
-}
-
-&::-moz-progress-bar {
-  background-color: $grey;
-}
+.notification {
+background-color: $grey-dark;
 }
 
 .card {
 $card-border-color: lighten($grey-darker, 5);
+box-shadow: none;
 border: $border-width solid $card-border-color;
+background-color: $grey-darker;
 border-radius: $radius;
 
 .card-image {
@@ -134,7 +114,13 @@ border-radius: $radius;
 }
 
 .card-header {
+  box-shadow: none;
+  background-color: rgba($black-bis, 0.2);
   border-radius: $radius $radius 0 0;
+}
+
+.card-footer {
+  background-color: rgba($black-bis, 0.2);
 }
 
 .card-footer,
@@ -179,43 +165,41 @@ border-color: $grey-dark;
 
 .message-header {
 font-weight: $weight-bold;
+background-color: $grey-dark;
+color: $white;
 }
 
 .message-body {
 border-width: $border-width;
-border-color: $grey;
+border-color: $grey-dark;
 }
 
 .navbar {
 border-radius: $radius;
 
 &.is-transparent {
-  background-color: transparent;
+  background: none;
+}
+
+&.is-primary {
+  .navbar-dropdown {
+    a.navbar-item.is-active {
+      background-color: $link;
+    }
+  }
 }
 
 @include touch {
   .navbar-menu {
-    background-color: inherit;
+    background-color: $navbar-background-color;
+    border-radius: 0 0 $radius $radius;
   }
 }
-
-@each $name, $pair in $colors {
-  $color: nth($pair, 1);
-  $color-invert: nth($pair, 2);
-
-  &.is-#{$name} {
-    @include touch {
-      .navbar-item,
-      .navbar-link {
-        color: rgba($color-invert, 0.75);
-
-        &.is-active {
-          color: $color-invert;
-        }
-      }
-    }
-  }
 }
+
+.hero .navbar,
+body > .navbar {
+border-radius: 0;
 }
 
 .pagination-link,
@@ -281,7 +265,7 @@ ul {
   }
 
   li.is-active a {
-    background-color: $background;
+    background-color: darken($grey-darker, 4);
   }
 }
 
@@ -293,6 +277,24 @@ ul {
 
   li + li {
     margin-left: -$border-width;
+  }
+}
+}
+
+.hero {
+// Colors
+@each $name, $pair in $colors {
+  $color: nth($pair, 1);
+  $color-invert: nth($pair, 2);
+
+  &.is-#{$name} {
+    .navbar {
+      .navbar-dropdown {
+        .navbar-item:hover {
+          background-color: $navbar-dropdown-item-hover-background-color;
+        }
+      }
+    }
   }
 }
 }

@@ -1,16 +1,11 @@
-export interface UrlInsaneState {
+export interface TypoState extends TypoResponseBody {
   options: TypoRequestBody | {};
-  result: TypoResponseBody | {};
-  form: UrlInsaneForm;
-  loading: boolean;
-  error: string;
+  form: TypoForm;
 }
 
-export interface UrlInsaneForm {
+export interface TypoForm {
   domain: string;
-  funcs: string[];
-  keyboards: string[];
-  typos: string[];
+  selections: TypoListItem[];
 }
 
 export interface TypoListItem {

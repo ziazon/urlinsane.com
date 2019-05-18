@@ -1,6 +1,3 @@
-# server build
-FROM gcr.io/cyberse/urlinsane as server-build
-
 # ui base
 FROM node:lts-alpine as ui-base
 WORKDIR /app
@@ -15,9 +12,9 @@ RUN npm run build
 
 # server build
 FROM nginx:stable-alpine as serve
-COPY --from=server-build /bin/urlinsane ./urlinsane
 COPY --from=ui-build /app/dist /usr/share/nginx/html
 COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./docker/run.sh ./run.sh
+
 EXPOSE 8080
-CMD ["./run.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
