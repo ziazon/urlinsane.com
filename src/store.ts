@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import modules from './services/modules';
-import { UrlInsaneState } from './services/urlinsane/types';
+import { TypoState } from './services/typo/types';
 
 Vue.use(Vuex);
 
 export interface RootState {
-  urlInsane: UrlInsaneState;
+  typo: TypoState;
 }
 
 export default new Vuex.Store<RootState>({

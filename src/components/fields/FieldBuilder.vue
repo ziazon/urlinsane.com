@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TypoOption } from '@/services/urlinsane/types';
+import { TypoOption } from '@/services/typo/types';
 import InputField from './InputField.vue';
 import MultiSelectField from './MultiSelectField.vue';
 
@@ -34,6 +34,7 @@ export default class FieldBuilder extends Vue {
   }
 
   get component() {
+    if (!this.option.type) return false;
     return `${this.option.type}-field`;
   }
 }

@@ -1,5 +1,5 @@
-import urlInsane from './urlinsane/store';
+import typo from './typo/store';
 
 export default {
-  urlInsane,
+  typo,
 };
