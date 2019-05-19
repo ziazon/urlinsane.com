@@ -1,10 +1,16 @@
 import Vue from 'vue';
+import VueAnalytics from 'vue-analytics';
 import { sync } from 'vuex-router-sync';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 sync(store, router);
+
+Vue.use(VueAnalytics, {
+  id: 'UA-140431310-1',
+  router,
+});
 
 Vue.config.productionTip = false;
 
