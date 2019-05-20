@@ -1,35 +1,35 @@
 <template lang="pug">
     transition(name="fade" mode="out-in")
       div(v-if="!$store.state.typo.loading")
-        section.section
-          .columns
-            .column
-              .field
-                label.label Domain
-                p.control
-                  input.input(
-                    type="text"
-                    :value="domain"
-                    @input="updateForm({ domain: $event.target.value })"
-                  )
-            .column
-              .field
-                label.label Options
-                p.control
-                  Multiselect(
-                    :options="multiSelectOptions"
-                    @input="updateSelections"
-                    :value="selections"
-                    :multiple="true"
-                    group-values="options"
-                    group-label="category"
-                    :group-select="true"
-                    placeholder="Type to search"
-                    track-by="value"
-                    label="name"
-                  )
-            .column.is-2.is-paddingless
-              a.button.is-primary.is-large.form-button(@click="fetchResult") Exec
+        .notification.is-primary
+          .container
+            .columns
+              .column
+                .field
+                  p.control
+                    input.input(
+                      type="text"
+                      :value="domain"
+                      placeholder="Domain"
+                      @input="updateForm({ domain: $event.target.value })"
+                    )
+              .column
+                .field.is-grouped
+                  p.control.is-expanded
+                    Multiselect(
+                      :options="multiSelectOptions"
+                      @input="updateSelections"
+                      :value="selections"
+                      :multiple="true"
+                      group-values="options"
+                      group-label="category"
+                      :group-select="true"
+                      placeholder="Type to search"
+                      track-by="value"
+                      label="name"
+                    )
+                  p.control
+                    a.button.is-success(@click="fetchResult") Exec
         .is-fullwidth.side-scrollable
           section.section
             //- .control(v-if="error")
