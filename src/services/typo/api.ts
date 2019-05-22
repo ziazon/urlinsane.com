@@ -12,7 +12,7 @@ export default {
     return data;
   },
   fetchResult: async (payload: TypoRequestBody): Promise<TypoResponseBody> => {
-    const { data } = await http.post<TypoResponseBody>('/typo', payload);
+    const { data } = await http.post<TypoResponseBody>('/typo/', payload);
 
     return data;
   },
