@@ -3,7 +3,7 @@ module.exports = {
     proxy: {
       '/api/typo': {
         changeOrigin: true,
-        target: 'http://api.urlinsane.com',
+        target: process.env.API_PROXY || 'http://api.urlinsane.com',
         pathRewrite: {
           '^/api/typo': '',
         },
