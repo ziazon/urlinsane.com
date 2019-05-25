@@ -1,7 +1,6 @@
 import {
-  chain, get, map, pick,
+  chain, get, map, first, keys,
 } from 'lodash';
-import TypoApi from '@/services/typo/api';
 import {
   Module,
   VuexModule,
@@ -10,21 +9,16 @@ import {
 } from 'vuex-module-decorators';
 import {
   TypoState,
-  TypoOption,
-  TypoOptionsResponseBody,
   TypoListItem,
-  TypoRequestBody,
+  TypoConfigItem,
   TypoResponseBody,
   TypoForm,
-} from '@/services/typo/types';
+} from './types';
+import conf from './config';
 
 @Module({ namespaced: true })
 export default class UrlInsaneModule extends VuexModule implements TypoState {
-  public options = {};
-
-  public rows: TypoResponseBody['rows'] = [];
-
-  public headers: TypoResponseBody['headers'] = [];
+  public config = conf();
 
   public form: TypoForm = {
     domain: '',
@@ -39,6 +33,10 @@ export default class UrlInsaneModule extends VuexModule implements TypoState {
     return this.form.selections;
   }
 
+  get options() {
+    return get(this.config, 'options');
+  }
+
   get payload() {
     const selections = chain(this.form.selections)
       .groupBy('category')
@@ -51,35 +49,27 @@ export default class UrlInsaneModule extends VuexModule implements TypoState {
   }
 
   get multiSelectOptions() {
-    const options = chain(this.options)
-      .pickBy('values')
-      .map((row: TypoOption, category: string) => ({
+    const config = chain(this.options)
+      .map((row: TypoConfigItem, category: string) => ({
         category,
+        label: row.label,
+        description: row.description,
         options: map(get(row, 'values', []), value => ({ ...value, category })),
       })).value();
-    return options;
+    return config;
   }
 
-  @Action({ commit: 'storeOptions' })
-  public async fetchOptions() {
-    const options = await TypoApi.fetchOptions();
-    return options;
+  get rows() {
+    return map(this.context.rootState.received, row => row.data);
   }
 
-  @Action({ commit: 'storeResult' })
-  public async fetchResult() {
-    // TODO: fix this dynamic type.  should never do 'value as TheInterface'
-    const result = await TypoApi.fetchResult(this.payload as TypoRequestBody);
-    return result;
+  get headers() {
+    return keys(first(this.rows));
   }
 
-  @Mutation private storeOptions(options: TypoOptionsResponseBody) {
-    this.options = options;
-  }
-
-  @Mutation private storeResult({ rows = [], headers = [] }: TypoResponseBody) {
-    this.rows = rows;
-    this.headers = headers;
+  @Action
+  private fetchResult() {
+    this.context.dispatch('sendData', this.payload, { root: true });
   }
 
   @Mutation private updateSelections(payload: TypoListItem[]) {
