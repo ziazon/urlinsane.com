@@ -1,11 +1,12 @@
-export interface TypoState extends TypoResponseBody {
-  options: TypoRequestBody | {};
+export interface TypoState {
+  config: TypoConfig | {};
   form: TypoForm;
+  rows: Array<TypoResponseBody['data']>
 }
 
 export interface TypoForm {
   domain: string;
-  selections: TypoListItem[];
+  selections: Array<TypoListItem>;
 }
 
 export interface TypoListItem {
@@ -14,15 +15,20 @@ export interface TypoListItem {
   description: string;
 }
 
-export interface TypoOption {
-  type: string;
+export interface TypoConfigItem {
+  label: string;
   description: string;
-  optional: boolean;
-  values?:TypoListItem[];
+  required?: boolean;
+  values?: Array<TypoListItem>;
 }
 
-export interface TypoOptionsResponseBody {
-  [key: string]: TypoOption;
+export interface TypoConfig {
+  domain: TypoConfigItem;
+  options: {
+    funcs: TypoConfigItem;
+    keyboards: TypoConfigItem;
+    typos: TypoConfigItem;
+  }
 }
 
 export interface TypoRequestBody {
@@ -33,8 +39,21 @@ export interface TypoRequestBody {
 }
 
 export interface TypoResponseBody {
-  headers: string[];
-  rows: Array<{
+  original: DomainBreakdown;
+  variant: DomainBreakdown;
+  typo: TypoType;
+  data: {
     [key: string]: string;
-  }>;
+  };
+}
+
+export interface DomainBreakdown {
+  domain: string;
+  suffix: string;
+}
+
+export interface TypoType {
+  code: string;
+  name: string;
+  description: string;
 }

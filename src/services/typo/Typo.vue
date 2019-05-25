@@ -1,6 +1,6 @@
 <template lang="pug">
     transition(name="fade" mode="out-in")
-      div(v-if="!$store.state.typo.loading")
+      div(v-if="true")
         .notification.is-primary
           .container
             .columns
@@ -22,7 +22,7 @@
                       :value="selections"
                       :multiple="true"
                       group-values="options"
-                      group-label="category"
+                      group-label="label"
                       :group-select="true"
                       placeholder="Type to search"
                       track-by="value"
@@ -48,15 +48,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { namespace } from 'vuex-class';
+import { namespace, Action } from 'vuex-class';
 import Multiselect from 'vue-multiselect';
 import {
   TypoForm,
   TypoState,
-  TypoOptionsResponseBody,
   TypoListItem,
-  TypoRequestBody,
   TypoResponseBody,
+  TypoRequestBody,
 } from './types';
 
 const typoStore = namespace('typo');
@@ -66,26 +65,26 @@ const components = { Multiselect };
   components,
 })
 export default class Typo extends Vue {
+  @Action private sendData!: (payload: TypoRequestBody) => Promise<void>;
+
   @typoStore.Getter private multiSelectOptions!: any;
 
   @typoStore.Getter private selections!: TypoListItem[];
 
   @typoStore.Getter private domain!: string;
 
-  @typoStore.State((state: TypoState) => state.headers) private headers!: TypoResponseBody['headers'];
+  @typoStore.Getter private payload!: TypoRequestBody;
 
-  @typoStore.State((state: TypoState) => state.rows) private rows!: TypoResponseBody['rows'];
+  @typoStore.Getter private headers!: string[];
 
-  @typoStore.Action private fetchOptions!: () => Promise<void>;
-
-  @typoStore.Action private fetchResult!: (payload: TypoRequestBody) => Promise<void>;
+  @typoStore.Getter private rows!: Array<TypoResponseBody['data']>;
 
   @typoStore.Mutation private updateForm!: (payload: TypoForm) => void;
 
   @typoStore.Mutation private updateSelections!: (payload: TypoListItem[]) => void;
 
-  private mounted() {
-    this.fetchOptions();
+  private fetchResult() {
+    this.sendData(this.payload);
   }
 }
 </script>
