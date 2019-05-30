@@ -5,3 +5,5 @@ declare module '*.vue' {
 }
 
 declare module 'vue-analytics';
+
+declare module 'js-queue';

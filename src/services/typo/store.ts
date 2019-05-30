@@ -11,7 +11,6 @@ import {
   TypoState,
   TypoListItem,
   TypoConfigItem,
-  TypoResponseBody,
   TypoForm,
 } from './types';
 import conf from './config';
@@ -60,7 +59,7 @@ export default class UrlInsaneModule extends VuexModule implements TypoState {
   }
 
   get rows() {
-    return map(this.context.rootState.received, row => row.data);
+    return map(this.context.rootState.ws.received, row => row.data);
   }
 
   get headers() {

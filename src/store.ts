@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  Module, VuexModule, Mutation, Action,
-} from 'vuex-module-decorators';
 import modules from './services/modules';
-import { TypoState } from './services/typo/types';
-import WS from './services/ws';
+import WS from './services/ws/ws';
 
-const ws = new WS({ protocol: 'ws', host: '127.0.0.1', port: 8888 });
+
+const ws = new WS({
+  protocol: process.env.WEBSOCKET_PROTOCOL,
+  host: process.env.WEBSOCKET_HOST,
+  port: process.env.WEBSOCKET_PORT,
+});
 
 Vue.use(Vuex);
 

@@ -19,12 +19,12 @@
             span
             span
           .navbar-end.navbar-menu
-            a.navbar-item(href="//github.com/rangertaha/urlinsane/stargazers")
-              img(src="https://img.shields.io/github/stars/rangertaha/urlinsane.svg" alt="GitHub stars")
-            a.navbar-item(href="//github.com/rangertaha/urlinsane/issues" target="_blank")
+            a.navbar-item(href="//github.com/cybersectech-org/urlinsane/stargazers")
+              img(src="https://img.shields.io/github/stars/cybersectech-org/urlinsane.svg" alt="GitHub stars")
+            a.navbar-item(href="//github.com/cybersectech-org/urlinsane/issues" target="_blank")
               i.fa.fa-bug
               | &nbsp;Report an issue
-            a.navbar-item(href="//github.com/rangertaha/urlinsane" target="_blank")
+            a.navbar-item(href="//github.com/cybersectech-org/urlinsane" target="_blank")
               span.icon
                 i.fa.fa-github
 </template>
