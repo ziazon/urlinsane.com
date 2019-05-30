@@ -1,4 +1,5 @@
 import { Store } from 'vuex';
+import * as Queue from 'js-queue';
 
 interface Options {
   protocol: string;
@@ -9,8 +10,16 @@ interface Options {
 class WS {
   public socket!: WebSocket;
 
+  private commitWait: number = 1;
+
+  private queue!: typeof Queue;
+
+  private interval!: number;
+
   constructor(options: Options) {
     this.socket = new WebSocket(this.getUrl(options));
+    this.queue = new Queue();
+    this.queue.autoRun = false;
   }
 
   public getUrl(options: Options): string {
@@ -29,14 +38,28 @@ class WS {
     this.socket.send(JSON.stringify(data));
   }
 
+  public runQueue() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.queue.next();
+    }, this.commitWait);
+  }
+
   public plugin() {
     return (store: Store<any>) => {
-      this.on('message', (event) => {
-        store.commit('receivedMessage', JSON.parse(event.data));
+      const commitReceivedEvent = (data: MessageEvent['data']) => () => {
+        store.commit('receivedMessage', JSON.parse(data));
+      };
+
+      this.on('message', (event: MessageEvent) => {
+        this.queue.add(commitReceivedEvent(event.data));
       });
+
       store.subscribeAction({
         before: (action) => {
           if (action.type === 'sendData') {
+            this.queue.clear();
+            this.runQueue();
             store.commit('resetReceived');
           }
         },

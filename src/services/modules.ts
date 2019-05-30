@@ -1,7 +1,7 @@
-import store from './store';
+import ws from './ws/store';
 import typo from './typo/store';
 
 export default {
-  store,
+  ws,
   typo,
 };
