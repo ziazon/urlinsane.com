@@ -1,10 +1,6 @@
 # ui base
 FROM node:lts-alpine as ui-base
 
-ARG WEBSOCKET_PROTOCOL=ws
-ARG WEBSOCKET_HOST=http://api.urlinsane.com
-ARG WEBSOCKET_PORT=80
-
 WORKDIR /app
 COPY ./package-lock.json ./package.json ./
 RUN npm ci
@@ -13,6 +9,10 @@ COPY . .
 
 # ui build
 FROM ui-base as ui-build
+
+ARG WEBSOCKET_PROTOCOL=ws
+ARG WEBSOCKET_HOST=api.urlinsane.com
+ARG WEBSOCKET_PORT=80
 
 ENV VUE_APP_WEBSOCKET_PROTOCOL=${WEBSOCKET_PROTOCOL}
 ENV VUE_APP_WEBSOCKET_HOST=${WEBSOCKET_HOST}
