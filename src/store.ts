@@ -5,9 +5,9 @@ import WS from './services/ws/ws';
 
 
 const ws = new WS({
-  protocol: process.env.WEBSOCKET_PROTOCOL,
-  host: process.env.WEBSOCKET_HOST,
-  port: process.env.WEBSOCKET_PORT,
+  protocol: process.env.VUE_APP_WEBSOCKET_PROTOCOL,
+  host: process.env.VUE_APP_WEBSOCKET_HOST,
+  port: process.env.VUE_APP_WEBSOCKET_PORT,
 });
 
 Vue.use(Vuex);
