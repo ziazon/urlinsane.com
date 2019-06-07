@@ -11,7 +11,7 @@ COPY . .
 FROM ui-base as ui-build
 
 ARG WEBSOCKET_PROTOCOL=ws
-ARG WEBSOCKET_HOST=api.urlinsane.com
+ARG WEBSOCKET_HOST=urlinsane-api-dot-cyberse.appspot.com
 ARG WEBSOCKET_PORT=80
 
 ENV VUE_APP_WEBSOCKET_PROTOCOL=${WEBSOCKET_PROTOCOL}
