@@ -9,17 +9,17 @@
                   p.control
                     input.input(
                       type="text"
-                      :value="domain"
+                      :value="typoStore.domain"
                       placeholder="Domain"
-                      @input="updateForm({ domain: $event.target.value })"
+                      @input="typoStore.updateForm({ domain: $event.target.value })"
                     )
               .column
                 .field.is-grouped
                   p.control.is-expanded
                     Multiselect(
-                      :options="multiSelectOptions"
-                      @input="updateSelections"
-                      :value="selections"
+                      :options="typoStore.multiSelectOptions"
+                      @input="typoStore.updateSelections"
+                      :value="typoStore.selections"
                       :multiple="true"
                       group-values="options"
                       group-label="label"
@@ -36,20 +36,23 @@
               .tags.has-addons
                 span.tag.is-danger Error
                 span.tag {{ error }}
-            table.table(v-if="headers")
+            table.table(v-if="typoStore.headers")
               thead
                 tr
-                  th(v-for="header in headers") {{ header }}
+                  th(v-for="header in typoStore.headers") {{ header }}
               tbody
-                tr(v-if="rows" v-for="row in rows")
-                  td(v-for="header in headers") {{ row[header] }}
+                tr(v-if="typoStore.rows" v-for="row in typoStore.rows")
+                  td(v-for="header in typoStore.headers") {{ row[header] }}
       div(v-else) Loading
 </template>
 
 <script lang="ts">
+import { getModule } from 'vuex-module-decorators';
 import { Component, Vue } from 'vue-property-decorator';
-import { namespace, Action } from 'vuex-class';
 import Multiselect from 'vue-multiselect';
+import typoStore from './store';
+import wsStore from '@/services/ws/store';
+
 import {
   TypoForm,
   TypoState,
@@ -58,33 +61,22 @@ import {
   TypoRequestBody,
 } from './types';
 
-const typoStore = namespace('typo');
 const components = { Multiselect };
 
 @Component({
   components,
 })
 export default class Typo extends Vue {
-  @Action private sendData!: (payload: TypoRequestBody) => Promise<void>;
+  get typoStore() {
+    return getModule(typoStore, this.$store);
+  }
 
-  @typoStore.Getter private multiSelectOptions!: any;
-
-  @typoStore.Getter private selections!: TypoListItem[];
-
-  @typoStore.Getter private domain!: string;
-
-  @typoStore.Getter private payload!: TypoRequestBody;
-
-  @typoStore.Getter private headers!: string[];
-
-  @typoStore.Getter private rows!: Array<TypoResponseBody['data']>;
-
-  @typoStore.Mutation private updateForm!: (payload: TypoForm) => void;
-
-  @typoStore.Mutation private updateSelections!: (payload: TypoListItem[]) => void;
+  get wsStore() {
+    return getModule(wsStore, this.$store);
+  }
 
   private fetchResult() {
-    this.sendData(this.payload);
+    this.wsStore.sendData(this.typoStore.payload);
   }
 }
 </script>

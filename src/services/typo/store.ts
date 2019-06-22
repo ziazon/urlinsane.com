@@ -15,7 +15,11 @@ import {
 } from './types';
 import conf from './config';
 
-@Module({ namespaced: true })
+const name = 'typo';
+const namespaced = true;
+
+
+@Module({ name, namespaced })
 export default class UrlInsaneModule extends VuexModule implements TypoState {
   public config = conf();
 

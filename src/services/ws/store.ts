@@ -5,8 +5,9 @@ import {
   Action,
 } from 'vuex-module-decorators';
 
+const name = 'ws';
 
-@Module
+@Module({ name })
 export default class Root extends VuexModule {
   public status = {
     total: {
@@ -18,7 +19,7 @@ export default class Root extends VuexModule {
   public received: any[] = [];
 
   @Action
-  public sendData() {}
+  public sendData(payload: any) {}
 
 
   @Mutation
