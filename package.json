@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
-    "serve": "vue-cli-service serve",
     "test-watch:unit": "vue-cli-service test:unit --watch",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "ant-design-vue": "^1.2.4",
     "core-js": "^3.1.4",
     "js-queue": "^2.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.0",
     "vue-class-component": "^7.1.0",
@@ -47,9 +48,12 @@
     "cool-checkboxes-for-bulma.io": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "sass": "^1.21.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.5.2",
+    "vue-cli-plugin-ant-design": "^1.0.0",
     "vue-cli-plugin-pug": "^1.0.7",
     "vue-template-compiler": "^2.6.10"
   }

@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-@import "bulma";
-@import "cool-checkboxes-for-bulma.io";
-
 $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid";
@@ -11,8 +8,4 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/v4-shims";
 @import "~vue-multiselect/dist/vue-multiselect.min.css";
 
-@import "variables";
 @import "transitions";
-@import "formbuilder";
-@import "overides";
-@import "custom";

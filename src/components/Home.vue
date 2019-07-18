@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(style="text-align: center;padding: 10px;")
     h1 Welcome to Url Insane!
 </template>
 

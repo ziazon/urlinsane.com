@@ -1,7 +1,7 @@
 <template lang="pug">
-  #app
+  #app.ant-layout
     SiteHeader
-    section.section.is-fullheight.is-paddingless
+    .ant-layout-content
       router-view
     SiteFooter
 </template>
@@ -20,8 +20,4 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import "@/scss/styles.scss";
-
-.is-fullheight {
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
-}
 </style>

@@ -1,48 +1,52 @@
 <template lang="pug">
+  #typo-squatting-search
+    a-form(layout="inline" @submit="")
+      a-row
+        a-col(:span="6" :validate-status="'error'")
+          .search-form-item
+            a-input(
+              size="large"
+              v-decorator="[]"
+              placeholder="Domain"
+              :value="typoStore.domain"
+              @input="typoStore.updateForm({ domain: $event.target.value })"
+            )
+        a-col(:span="12")
+          .search-form-item
+            Multiselect(
+              :options="typoStore.multiSelectOptions"
+              @input="typoStore.updateSelections"
+              :value="typoStore.selections"
+              :multiple="true"
+              group-values="options"
+              group-label="label"
+              :group-select="true"
+              placeholder="Type to search"
+              track-by="value"
+              label="name"
+            )
+        a-col(:span="6")
+          .search-form-item
+            a-button(
+              size="large"
+              type="primary"
+              @click="fetchResult"
+            ) Exec
     transition(name="fade" mode="out-in")
-      div(v-if="true")
-        .notification.is-primary
-          .container
-            .columns
-              .column
-                .field
-                  p.control
-                    input.input(
-                      type="text"
-                      :value="typoStore.domain"
-                      placeholder="Domain"
-                      @input="typoStore.updateForm({ domain: $event.target.value })"
-                    )
-              .column
-                .field.is-grouped
-                  p.control.is-expanded
-                    Multiselect(
-                      :options="typoStore.multiSelectOptions"
-                      @input="typoStore.updateSelections"
-                      :value="typoStore.selections"
-                      :multiple="true"
-                      group-values="options"
-                      group-label="label"
-                      :group-select="true"
-                      placeholder="Type to search"
-                      track-by="value"
-                      label="name"
-                    )
-                  p.control
-                    a.button.is-success(@click="fetchResult") Exec
-        .is-fullwidth.side-scrollable
-          section.section
-            //- .control(v-if="error")
-              .tags.has-addons
-                span.tag.is-danger Error
-                span.tag {{ error }}
-            table.table(v-if="typoStore.headers")
-              thead
-                tr
-                  th(v-for="header in typoStore.headers") {{ header }}
-              tbody
-                tr(v-if="typoStore.rows" v-for="row in typoStore.rows")
-                  td(v-for="header in typoStore.headers") {{ row[header] }}
+      .ant-table.ant-table-scroll-position-left.ant-table-default.ant-table-bordered(v-if="true")
+        .ant-table-title
+        .ant-table-content
+          .ant-table-body
+            thead.ant-table-thead
+              tr
+                th(v-for="header in typoStore.headers") {{ header }}
+            tbody.ant-table-tbody
+              tr.ant-table-row.ant-table-row-level-0(
+                v-if="typoStore.rows"
+                v-for="row in typoStore.rows"
+              )
+                td(v-for="header in typoStore.headers") {{ row[header] }}
+          .ant-table-footer
       div(v-else) Loading
 </template>
 
@@ -80,3 +84,9 @@ export default class Typo extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .search-form-item {
+    margin: 10px;
+  }
+</style>

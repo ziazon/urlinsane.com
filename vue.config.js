@@ -12,9 +12,9 @@ module.exports = {
   },
   css: {
     loaderOptions: {
-      sass: {
-        // eslint-disable-next-line quotes
-        data: `@import "@/scss/_variables.scss";`,
+      less: {
+        modifyVars: {},
+        javascriptEnabled: true,
       },
     },
   },
