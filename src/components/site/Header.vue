@@ -1,29 +1,23 @@
 <template lang="pug">
-  section.hero.is-primary
-    .hero-head
-      nav.main-nav.navbar
-        .container
-          .navbar-start
-            router-link.navbar-item(to="/")
-                h1.title.is-5 UrlInsane
+  .header.ant-layout-header
+    .logo
+    .ant-row
+      .ant-col-8
+        ul.ant-menu.ant-menu-horizontal.ant-menu-root.ant-menu-dark(role="menu")
+          li.ant-menu-item
             router-link.navbar-item(to="/") Home
-            .navbar-item.has-dropdown.is-hoverable
-              a.navbar-link
-                | Tools
-              .navbar-dropdown.is-boxed
-                .columns
-                  .column
-                    router-link.navbar-item(to="/typo") Typo Squatting
-          span.navbar-toggle
-            span
-            span
-            span
-          .navbar-end.navbar-menu
+          li.ant-menu-item
+            router-link.navbar-item(to="/typo") Typo Squatting
+      .ant-col-8.ant-col-offset-8
+        ul.ant-menu.ant-menu-horizontal.ant-menu-root.ant-menu-dark(role="menu")
+          li.ant-menu-item
             a.navbar-item(href="//github.com/cybersectech-org/urlinsane/stargazers")
               img(src="https://img.shields.io/github/stars/cybersectech-org/urlinsane.svg" alt="GitHub stars")
+          li.ant-menu-item
             a.navbar-item(href="//github.com/cybersectech-org/urlinsane/issues" target="_blank")
               i.fa.fa-bug
               | &nbsp;Report an issue
+          li.ant-menu-item
             a.navbar-item(href="//github.com/cybersectech-org/urlinsane" target="_blank")
               span.icon
                 i.fa.fa-github
