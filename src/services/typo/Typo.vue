@@ -33,7 +33,9 @@
               @click="fetchResult"
             ) Exec
     transition(name="fade" mode="out-in")
-      .ant-table.ant-table-scroll-position-left.ant-table-default.ant-table-bordered(v-if="true")
+      .ant-table.ant-table-scroll-position-left.ant-table-default.ant-table-bordered(
+        v-if="typoStore.rows.length"
+      )
         .ant-table-title
         .ant-table-content
           .ant-table-body
@@ -47,7 +49,6 @@
               )
                 td(v-for="header in typoStore.headers") {{ row[header] }}
           .ant-table-footer
-      div(v-else) Loading
 </template>
 
 <script lang="ts">
