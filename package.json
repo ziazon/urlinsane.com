@@ -14,7 +14,7 @@
     "ant-design-vue": "^1.2.4",
     "core-js": "^3.1.4",
     "js-queue": "^2.0.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.0",
     "vue-class-component": "^7.1.0",
